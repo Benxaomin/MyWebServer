@@ -114,6 +114,7 @@ public:
     }
 
     /*往队列中添加元素前需要先将所有使用队列的线程先唤醒*/
+    /*阻塞队列封装了生产者消费者模型，调用push的是生产者，也就是工作线程*/
     bool push(T& item) {
         m_mutex.lock();
         if (m_size >= m_max_size) {
@@ -131,6 +132,7 @@ public:
         return true;
     }
 
+    /*调用pop的是消费者，负责把生产者的内容写入文件*/
     bool pop(T& item) {
         m_mutex.lock();
         while (m_size <= 0) {
