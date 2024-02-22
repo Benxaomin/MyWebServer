@@ -25,6 +25,7 @@
 #include "../CGImysql/sql_connection_pool.h"
 #include "../timer/lst_timer.h"
 #include "../log/log.h"
+
 class http_conn{
 public:
     /*设置读取文件的名称m_rea_file大小*/
@@ -49,7 +50,7 @@ public:
 
 public:
     /*初始化套接字地址，函数内部调用私有方法init*/
-    void init(int sockfd, const sockaddr_in &addr);
+    void init(int sockfd, const sockaddr_in &addr, char *, int, int, string user, string passwd, string sqlname);
     /*关闭http连接*/
     void close_conn(bool real_close = true);
     void process();
@@ -58,7 +59,7 @@ public:
     /*响应报文写入函数*/
     bool write();
     sockaddr_in *get_address() {
-        return *m_address;
+        return &m_address;
     }
     /*同步线程初始化数据库读取表*/
     void initmysql_result(connection_pool *connPool);
@@ -100,6 +101,58 @@ private:
     bool add_blank_line();
 
 public:
+    static int m_epollfd;
     static int m_user_count;
+    MYSQL *mysql;
+    int m_state;//读事件0，写事件1
+
+private:
+    int m_sockfd;
+    sockaddr_in m_address;
+
+    /*存储读取的请求报文*/
+    char m_read_buf[READ_BUFFER_SIZE];
+    /*缓冲区中m_read_buf中数据的最后一个字节的下一个位置*/
+    long m_read_idx;
+    /*m_read_buf读取的位置m_checked_idx*/
+    int m_checked_idx;
+    /*m_read_buf中已经解析的字符个数*/
+    int m_start_line;
+
+    /*存储发送的响应报文数据*/
+    char m_write_buf[WRITE_BUFFER_SIZE];
+    /*指示buffer中的长度*/
+    int m_write_idx;
+
+    /*主状态机的状态*/
+    CHECK_STATE m_check_state;
+    /*请求方法*/
+    METHOD m_method;
+
+    /*以下为解析请求报文中对应的6个变量*/
+    char m_real_file[FILENAME_LEN];
+    char *m_url;
+    char *m_version;
+    char *m_host;
+    long m_content_length;
+    bool m_linger;
+
+    char *m_file_address;   //读取服务器上的文件地址
+    struct stat m_file_stat;
+    struct iovec m_iv[2];   //io向量机制iovec
+    int m_iv_count;
+    int cgi;                //是否启用的POST
+    char *m_string;         //存储请求头数据
+    int bytes_to_send;      //剩余发送的字节
+    int bytes_have_send;    //已发送的字节
+    char *doc_root;
+
+    map<string, string> m_users;
+    int m_TRIGMode;         //m_TRIGMode == 1时epoll为ET触发模式
+    int m_close_log;
+
+    char sql_user[100];
+    char sql_passwd[100];
+    char sql_name[100];
 };
 #endif
