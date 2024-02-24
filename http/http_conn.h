@@ -45,8 +45,8 @@ public:
     enum LINE_STATUS{LINE_OK = 0, LINE_BAD, LINE_OPEN};
 
 public:
-    http_conn();
-    ~http_conn();
+    http_conn(){}
+    ~http_conn(){}
 
 public:
     /*初始化套接字地址，函数内部调用私有方法init*/
