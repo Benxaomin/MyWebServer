@@ -17,13 +17,13 @@ public:
     bool append(T *request, int state);
     bool append_p(T *request);
 private:
-    void *worker(void *args);
+    static void *worker(void *args);
     void run();
 private:
     int m_thread_number;    //线程池中的线程数量
     int m_max_requests;     //请求队列中的最大请求数
     phtread_t *m_threads;   //线程池数组
-    connection_pool *m_connPool;
+    connection_pool *m_connPool; //数据库
     int m_actor_model;      //行为模式
 
     std::list<T *> m_workqueue;//工作队列
@@ -32,8 +32,9 @@ private:
 };
 
 template <typename T>
-threadpool<T>::threadpool(int actor_model, connection_pool *connPool, int thread_number, int max_requests)
-    : actor_model(m_actor_model), m_thread_number(thread_number), m_max_requests(max_requests), m_connPool(connPool) {
+threadpool<T>::threadpool(int actor_model, connection_pool *connPool, int thread_number, int max_requests) 
+: m_actor_model(actor_model), m_connPool(connPool), m_thread_number(thread_number), m_max_requests(max_requests), m_threads(NULL)
+{
         if (m_thread_number <= 0 || m_max_requests <= 0) {
             throw std::exception();
         }
