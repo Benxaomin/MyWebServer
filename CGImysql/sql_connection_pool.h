@@ -1,3 +1,6 @@
+#ifndef SQL_CONNECTION_POOL
+#define SQL_CONNECTION_POOL
+
 #include<iostream>
 #include<mysql/mysql.h>
 #include<list>
@@ -53,3 +56,5 @@ private:
     connection_pool *poolRALL;
     MYSQL *conRAII;
 };
+
+#endif

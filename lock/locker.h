@@ -76,8 +76,8 @@ public:
         return pthread_cond_wait(&m_cond, m_mutex) == 0;
     }
 
-    bool timewait(pthread_mutex_t *m_mutex, struct timespec *m_abstime) {
-        return pthread_cond_timedwait(&m_cond, m_mutex, m_abstime) == 0;
+    bool timewait(pthread_mutex_t *m_mutex, struct timespec m_abstime) {
+        return pthread_cond_timedwait(&m_cond, m_mutex, &m_abstime) == 0;
     }
 
     bool signal() {

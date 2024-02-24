@@ -118,7 +118,7 @@ public:
     bool push(T& item) {
         m_mutex.lock();
         if (m_size >= m_max_size) {
-            cond.broadcast();
+            m_cond.broadcast();
             m_mutex.unlock();
             return false;
         }
@@ -127,7 +127,7 @@ public:
         m_array[m_back] = item;
         m_size++;
 
-        cond.broadcast();
+        m_cond.broadcast();
         m_mutex.unlock();
         return true;
     }
@@ -136,7 +136,7 @@ public:
     bool pop(T& item) {
         m_mutex.lock();
         while (m_size <= 0) {
-            if (!cond.wait(m_mutex.get())) {
+            if (!m_cond.wait(m_mutex.get())) {
                 m_mutex.unlock();
                 return false;
             }
@@ -155,7 +155,7 @@ public:
         gettimeofday(&now,nullptr);
         m_mutex.lock();
         if (m_size <= 0) {
-            t.tv_sec = now.tv_sec + ms_timeout/1000;
+            t.tv_sec = now.tv_sec + ms_timeout / 1000;
             t.tv_nsec = (ms_timeout % 1000) * 1000;
             if (!m_cond.timewait(m_mutex.get(), t)) {
                 m_mutex.unlock();
