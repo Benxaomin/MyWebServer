@@ -145,7 +145,7 @@ private:
     char *m_string;         //存储请求头数据
     int bytes_to_send;      //剩余发送的字节
     int bytes_have_send;    //已发送的字节
-    char *doc_root;
+    char *doc_root;         //网站根目录
 
     map<string, string> m_users;
     int m_TRIGMode;         //m_TRIGMode == 1时epoll为ET触发模式
