@@ -1,17 +1,20 @@
 #ifndef SQL_CONNECTION_POOL
 #define SQL_CONNECTION_POOL
 
-#include<iostream>
-#include<mysql/mysql.h>
-#include<list>
-
-#include"../log/log.h"
-#include"../lock/locker.h"
+#include <stdio.h>
+#include <list>
+#include <mysql/mysql.h>
+#include <error.h>
+#include <string.h>
+#include <iostream>
+#include <string>
+#include "../lock/locker.h"
+#include "../log/log.h"
 using namespace std;
 
 class connection_pool{
 public:
-    static connection_pool* Getinstance() {
+    static connection_pool* GetInstance() {
         static connection_pool connPool;
         return &connPool;
     }
@@ -22,7 +25,7 @@ public:
     void DestroyPool();                     //销毁所有连接
 
     /*初始化数据库连接池*/
-    void init(string url, string User, string PassWord, string DBName, int MaxConn, int Port, int close_log);
+    void init(string url, string User, string PassWord, string DBName, int Port, int MaxConn, int close_log);
 
 private:
     connection_pool();

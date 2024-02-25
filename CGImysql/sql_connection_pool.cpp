@@ -1,4 +1,14 @@
-#include"sql_connection_pool.h"
+#include <mysql/mysql.h>
+#include <stdio.h>
+#include <string>
+#include <string.h>
+#include <stdlib.h>
+#include <list>
+#include <pthread.h>
+#include <iostream>
+#include "sql_connection_pool.h"
+
+using namespace std;
 
 connection_pool::connection_pool() {
     m_FreeConn = 0;
@@ -8,7 +18,8 @@ connection_pool::~connection_pool() {
     DestroyPool();
 }
 
-void connection_pool::init(string url, string User, string PassWord, string DBName, int MaxConn, int Port, int close_log) {
+void connection_pool::init(string url, string User, string PassWord, string DBName, int Port, int MaxConn, int close_log) {
+    cout<<"  数据库连接池初始化";
     m_url = url;
     m_Port = Port;
     m_User = User;
@@ -24,10 +35,12 @@ void connection_pool::init(string url, string User, string PassWord, string DBNa
             LOG_ERROR("MySQL Error : mysql_init");
             exit(1);
         }
-
+        
+        //cout<<"第"<<i<<"次 :before mysql_real_connect"<<endl;
         /*真正的连接函数*/
         con = mysql_real_connect(con, url.c_str(), User.c_str(), PassWord.c_str(), DBName.c_str(), Port, NULL, 0);
 
+        //cout<<"第"<<i<<"次 :after mysql_real_connect"<<endl;
         if (con == nullptr) {
             LOG_ERROR("MySQL Error : mysql_real_connect");
             exit(1);
@@ -40,6 +53,8 @@ void connection_pool::init(string url, string User, string PassWord, string DBNa
     reserve = sem(m_FreeConn);//信号量记录共享资源总量
 
     m_MaxConn = m_FreeConn;
+
+    cout<<"  数据库连接池初始化完成";
 }
 
 MYSQL *connection_pool::Getconnection() {
@@ -74,7 +89,7 @@ bool connection_pool::ReleaseConnection(MYSQL *con) {
 }
 
 int connection_pool::GetFreeConn() {
-    return m_FreeConn;
+    return this->m_FreeConn;
 }
 
 void connection_pool::DestroyPool() {

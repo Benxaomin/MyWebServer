@@ -49,7 +49,7 @@ void sort_timer_lst::adjust_timer(util_timer *timer) {
     } else {
         timer->prev->next = timer->next;
         timer->next->prev = timer->prev;
-        add_timer(timer, head);
+        add_timer(timer, timer->next);
     }
 }
 
@@ -79,7 +79,6 @@ void sort_timer_lst::del_timer(util_timer *timer) {
     timer->prev->next = timer->next;
     timer->next->prev = timer->prev;
     delete timer;
-    return;
 }
 
 
@@ -103,7 +102,7 @@ void sort_timer_lst::add_timer(util_timer *timer, util_timer *lst_head) {
         prev->next = timer;
         timer->prev = prev;
         timer->next = NULL;
-        timer = tail;
+        tail = timer;
     }
 }
 
@@ -139,7 +138,7 @@ void Utils::init(int timeslot) {
 int Utils::setnonblocking(int fd) {
     /*FILE Control函数用于对文件描述符执行各种操作*/
     int old_option = fcntl(fd, F_GETFL);
-    int new_option = old_option |= O_NONBLOCK;
+    int new_option = old_option | O_NONBLOCK;
     fcntl(fd, F_SETFL, new_option);
     return old_option;//返回的是旧的设置以用于恢复改动状态
 }
@@ -158,7 +157,7 @@ void Utils::addfd(int epollfd, int fd, bool one_shot, int TRIGMode) {
     if (one_shot) {
         event.events |= EPOLLONESHOT;
     }
-    epoll_ctl(epollfd, EPOLL_CTL_MOD, fd, &event);
+    epoll_ctl(epollfd, EPOLL_CTL_ADD, fd, &event);
     setnonblocking(fd);
 }
 
@@ -185,7 +184,7 @@ void Utils::addsig(int sig, void(handler)(int), bool restart) {
         sa.sa_flags |= SA_RESTART;
     /*将所有信号添加到信号集中*/
     sigfillset(&sa.sa_mask);
-    assert(sigaction(sig, &sa, NULL) != 0);
+    assert(sigaction(sig, &sa, NULL) != -1);
 }
 
 void Utils::timer_handler() {

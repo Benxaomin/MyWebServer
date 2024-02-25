@@ -11,6 +11,7 @@ locker m_lock;
 map<string,string> users;
 
 void http_conn::initmysql_result(connection_pool *connPool) {
+    cout<<" 数据库具体成员初始化";
     /*从池中取一个连接*/
     MYSQL *mysql = NULL;
     connectionRAII mysqlcon(&mysql, connPool);
@@ -31,6 +32,7 @@ void http_conn::initmysql_result(connection_pool *connPool) {
         string temp2(row[1]);
         users[temp1] = temp2;
     }
+    cout<<"  数据库具体成员初始化完成";
 }
 
 /*设置fd非阻塞*/
@@ -82,7 +84,7 @@ void modfd(int epollfd, int fd, int ev, int TRIGMode) {
     if (TRIGMode == 1) {
         event.events = ev | EPOLLIN | EPOLLET | EPOLLRDHUP;
     } else {
-        event.events = ev | EPOLLIN | EPOLLRDHUP;
+        event.events = ev | EPOLLONESHOT | EPOLLRDHUP;
     }
     epoll_ctl(epollfd, EPOLL_CTL_MOD, fd, &event);
 }
@@ -139,6 +141,34 @@ void http_conn::init() {
     memset(m_real_file, '\0', FILENAME_LEN);
 }
 
+/*从状态机，用于分析出一行的内容
+  返回值为行的读取状态，有LINE_OK,LINE_BAD,LINE_OPEN*/
+http_conn::LINE_STATUS http_conn::parse_line() {
+    char temp;
+    for (; m_checked_idx < m_read_idx; ++m_checked_idx) {
+        temp = m_read_buf[m_checked_idx];
+        if (temp == '\r') {
+            if ((m_checked_idx + 1) == m_read_idx) {
+                return LINE_OPEN;
+            } else if (m_read_buf[m_checked_idx + 1] == '\n') {
+                m_read_buf[m_checked_idx++] = '\0';
+                m_read_buf[m_checked_idx++] = '\0';
+                return LINE_OK;
+            }
+            return LINE_BAD;
+        }
+        else if (temp == '\n') {
+            if (m_checked_idx > 1 && m_read_buf[m_checked_idx - 1] == '\r') {
+                m_read_buf[m_checked_idx - 1] = '\0';
+                m_read_buf[m_checked_idx++] = '\0';
+                return LINE_OK;
+            }
+            return LINE_BAD;
+        }
+    }
+    return LINE_OPEN;
+}
+
 /*循环读套接字上的数据，直到无数据可读或对方关闭连接*/
 /*非阻塞ET工作模式下，需要一次性把数据读完*/
 bool http_conn::read_once() {
@@ -179,33 +209,7 @@ bool http_conn::read_once() {
 }
 
 
-/*从状态机，用于分析出一行的内容
-  返回值为行的读取状态，有LINE_OK,LINE_BAD,LINE_OPEN*/
-http_conn::LINE_STATUS http_conn::parse_line() {
-    char temp;
-    for (; m_checked_idx < m_read_idx; ++m_checked_idx) {
-        temp = m_read_buf[m_checked_idx];
-        if (temp == '\r') {
-            if ((m_checked_idx + 1) == m_read_idx) {
-                return LINE_OPEN;
-            } else if (m_read_buf[m_checked_idx + 1] == '\n') {
-                m_read_buf[m_checked_idx++] = '\0';
-                m_read_buf[m_checked_idx++] = '\0';
-                return LINE_OK;
-            }
-            return LINE_BAD;
-        }
-        else if (temp == '\n') {
-            if (m_checked_idx > 1 && m_read_buf[m_checked_idx - 1] == '\r') {
-                m_read_buf[m_checked_idx - 1] = '\0';
-                m_read_buf[m_checked_idx++] = '\0';
-                return LINE_OK;
-            }
-            return LINE_BAD;
-        }
-    }
-    return LINE_OPEN;
-}
+
 
 /*解析http请求行，获得请求方法，目标url及http版本号*/
 http_conn::HTTP_CODE http_conn::parse_request_line(char *text) {
@@ -310,6 +314,68 @@ http_conn::HTTP_CODE http_conn::parse_content(char *text) {
     return NO_REQUEST;
 }
 
+http_conn::HTTP_CODE http_conn::process_read() {
+    /*初始化从状态机状态，HTTP请求解析结果*/
+    LINE_STATUS line_status = LINE_OK;
+    HTTP_CODE ret = NO_REQUEST;
+    char* text = 0;
+
+    /*parse_line为从状态机的具体实现*/
+    while((m_check_state == CHECK_STATE_CONTENT && line_status == LINE_OK) || ((line_status = parse_line()) == LINE_OK)) {
+        text = get_line();
+
+        /*m_checked_idx是每一个数据行在m_read_buf中的起始位置*/
+        /*m_checked_idx表示从状态机在m_read_buf中读取的位置*/
+        m_start_line = m_checked_idx;
+
+        LOG_INFO("%s", text);
+        /*主状态机三种状态转移逻辑转移*/
+        switch (m_check_state)
+        {
+            case CHECK_STATE_REQUESTLINE:
+            {
+                /*解析请求行*/
+                ret = parse_request_line(text);
+                if (ret == BAD_REQUEST) {
+                    return BAD_REQUEST;
+                }
+                break;
+            }
+            case CHECK_STATE_HEADER:
+            {
+                /*解析请求头*/
+                ret = parse_headers(text);
+                if (ret == BAD_REQUEST) {
+                    return BAD_REQUEST; 
+                }
+                /*完整解析GET请求后，跳转到报文响应函数*/
+                else if (ret == GET_REQUEST) {
+                    return do_request();
+                }
+                break;
+            }
+            case CHECK_STATE_CONTENT:
+            {
+                /*解析消息体*/
+                ret = parse_content(text);
+
+                /*完整解析POST请求后，跳转到报文响应函数*/
+                if (ret == GET_REQUEST) {
+                    return do_request();
+                }
+
+                /*解析完消息体即完成了报文解析，为了避免再次进入循环，更新line_status*/
+                line_status = LINE_OPEN;
+                break;
+            }
+        
+        default:
+            return INTERNAL_ERROR;
+        }
+    }
+    return NO_REQUEST;
+}
+
 http_conn::HTTP_CODE http_conn::do_request() {
     strcpy(m_real_file, doc_root);
     int len = strlen(doc_root);
@@ -334,16 +400,21 @@ http_conn::HTTP_CODE http_conn::do_request() {
             name[i - 5] = m_string[i];
         name[i - 5] = '\0';
 
+        int j = 0;
+        for (i = i + 10; m_string[i] != '\0'; ++i, ++j)
+            password[j] = m_string[i];
+        password[j] = '\0';
+
         if (*(p + 1) == '3') {
             /*如果是注册，先检测数据库中是非有重名的
               没有重名，增加数据*/
             char *sql_insert = (char *)malloc(sizeof(char) * 200);
-            strcpy(sql_insert, "INSERT INTO user(username,passwd) VALUES(");
-            strcat(sql_insert,"");
-            strcat(sql_insert,name);
-            strcat(sql_insert,",");
-            strcat(sql_insert,password);
-            strcat(sql_insert,")");
+            strcpy(sql_insert, "INSERT INTO user(username, passwd) VALUES(");
+            strcat(sql_insert, "'");
+            strcat(sql_insert, name);
+            strcat(sql_insert, "', '");
+            strcat(sql_insert, password);
+            strcat(sql_insert, "')");
 
             if (users.find(name) == users.end()) {
                 m_lock.lock();
@@ -414,7 +485,7 @@ http_conn::HTTP_CODE http_conn::do_request() {
         free(m_url_real);
     }
     else {
-        strncpy(m_real_file, m_url, FILENAME_LEN - len - 1);
+        strncpy(m_real_file + len, m_url, FILENAME_LEN - len - 1);
     }
 
     if (stat(m_real_file, &m_file_stat) < 0) {
@@ -499,66 +570,7 @@ bool http_conn::write() {
     }
 }
 
-http_conn::HTTP_CODE http_conn::process_read() {
-    /*初始化从状态机状态，HTTP请求解析结果*/
-    LINE_STATUS line_status = LINE_OK;
-    HTTP_CODE ret = NO_REQUEST;
-    char* text = 0;
 
-    /*parse_line为从状态机的具体实现*/
-    while((m_check_state == CHECK_STATE_CONTENT && line_status == LINE_OK) || ((line_status = parse_line()) == LINE_OK)) {
-        text = get_line();
-
-        /*m_checked_idx是每一个数据行在m_read_buf中的起始位置*/
-        /*m_checked_idx表示从状态机在m_read_buf中读取的位置*/
-        m_start_line = m_checked_idx;
-
-        /*主状态机三种状态转移逻辑转移*/
-        switch (m_check_state)
-        {
-            case CHECK_STATE_REQUESTLINE:
-            {
-                /*解析请求行*/
-                ret = parse_request_line(text);
-                if (ret == BAD_REQUEST) {
-                    return BAD_REQUEST;
-                }
-                break;
-            }
-            case CHECK_STATE_HEADER:
-            {
-                /*解析请求头*/
-                ret = parse_headers(text);
-                if (ret == BAD_REQUEST) {
-                    return BAD_REQUEST; 
-                }
-                /*完整解析GET请求后，跳转到报文响应函数*/
-                else if (ret == GET_REQUEST) {
-                    return do_request();
-                }
-                break;
-            }
-            case CHECK_STATE_CONTENT:
-            {
-                /*解析消息体*/
-                ret = parse_content(text);
-
-                /*完整解析POST请求后，跳转到报文响应函数*/
-                if (ret == GET_REQUEST) {
-                    return do_request();
-                }
-
-                /*解析完消息体即完成了报文解析，为了避免再次进入循环，更新line_status*/
-                line_status = LINE_OPEN;
-                break;
-            }
-        
-        default:
-            return INTERNAL_ERROR;
-        }
-    }
-    return NO_REQUEST;
-}
 
 /*-----------------------------------------------process_write()模块-----------------------------------------------*/
 //定义http响应的一些状态信息
@@ -634,7 +646,7 @@ bool http_conn::process_write(HTTP_CODE ret) {
     case BAD_REQUEST:
     {
         add_status_line(404, error_404_title);
-        add_headers(strlen(error_400_form));
+        add_headers(strlen(error_404_form));
         if (!add_content(error_404_form)) {
             return false;
         }

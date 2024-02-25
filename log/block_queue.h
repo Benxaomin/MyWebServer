@@ -7,7 +7,7 @@ date:20240219
 #define BLOCK_QUEUE_H
 
 #include<iostream>
-#include<stdio.h>
+#include<stdlib.h>
 #include<pthread.h>
 #include<sys/time.h>
 #include"../lock/locker.h"
@@ -19,13 +19,13 @@ class block_queue{
 public:
 
     /*初始化阻塞队列*/
-    block_queue(int max_size) {
+    block_queue(int max_size = 1000) {
         if (max_size <= 0) {
             exit(-1);
         }
 
         m_max_size = max_size;
-        T* m_array = new T[max_size];
+        m_array = new T[max_size];
         m_size = 0;
         m_front = -1;
         m_back = -1;
@@ -75,7 +75,7 @@ public:
     bool front(T &value) {
         m_mutex.lock();
         /*注意下面的if判断不能用empty，因为empty函数也有加锁操作，加两次锁会导致死锁*/
-        if (size == 0) {
+        if (m_size == 0) {
             m_mutex.unlock();
             return false;
         }

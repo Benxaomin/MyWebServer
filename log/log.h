@@ -1,12 +1,12 @@
 #ifndef LOG_H
 #define LOG_H
 
-#include<stdio.h>
-#include<pthread.h>
-#include<ctime>
-#include<cstring>
-#include<cstdarg>
-#include"block_queue.h"
+#include <stdio.h>
+#include <iostream>
+#include <string>
+#include <stdarg.h>
+#include <pthread.h>
+#include "block_queue.h"
 using namespace std;
 
 class Log{
@@ -25,15 +25,11 @@ public:
 
     void write_log(int level, const char *format, ...);
 
-    void flush(void) {
-        m_mutex.lock();
-        fflush(m_fp);
-        m_mutex.unlock();
-    }
+    void flush(void);
 private:
     /*日志单例模式1：私有化构造函数，确保外界无法创建新实例*/
     Log();
-    ~Log();
+    virtual ~Log();
 private:
     void* async_write_log() {
         string single_log;

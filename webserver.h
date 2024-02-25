@@ -34,12 +34,12 @@ public:
     void thread_pool();
     void eventListen();
 
-    void timer(int fd, struct sockaddr_in address);
+    void timer(int connfd, struct sockaddr_in client_address);
     void adjust_timer(util_timer *timer);
-    void deal_timer(util_timer *timer, int socfd);
+    void deal_timer(util_timer *timer, int sockfd);
 
     bool dealclientdata();
-    bool dealwithsignal(bool &timerout, bool &stop_server);
+    bool dealwithsignal(bool& timerout, bool& stop_server);
 
     void dealwithread(int sockfd);
     void dealwithwrite(int sockfd);

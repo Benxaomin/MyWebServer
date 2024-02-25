@@ -9,7 +9,7 @@ WebServer::WebServer() {
     char root[6] = "/root";
     m_root = (char *)malloc(strlen(server_path) + strlen(root) + 1);
     strcpy(m_root, server_path);
-    strcpy(m_root, root);
+    strcat(m_root, root);
     
     /*初始化定时器*/
     users_timer = new client_data[MAX_FD];
@@ -45,54 +45,70 @@ void WebServer::init(int port, string user, string passWord, string databaseName
 
 void WebServer::trig_mode() {
     /*LT + LT*/
+    cout<<"mode :";
     if (m_TRIGMode == 0) {
+        cout<<"LT+LT"<<endl;
         m_LISTENTrigmode = 0;
         m_CONNTrigmode = 0;
     }
     /*LT + ET*/
     else if (m_TRIGMode == 1) {
+        cout<<"LT + ET"<<endl;
         m_LISTENTrigmode = 0;
         m_CONNTrigmode = 1;
     }
     /*ET + LT*/
     else if (m_TRIGMode == 2) {
+        cout<<"ET + LT"<<endl;
         m_LISTENTrigmode = 1;
         m_CONNTrigmode = 0;
     }
     /*ET + ET*/
     else if (m_TRIGMode == 3) {
+        cout<<"ET + ET"<<endl;
         m_LISTENTrigmode = 1;
         m_CONNTrigmode = 1;
     }
 }
 
 void WebServer::log_write() {
+    cout<<"log_write()";
     if (m_close_log == 0) {
+        cout<<"-进入日志成功";
         /*初始化日志,m_log_write为1代表异步写*/
         if (m_log_write == 1) {
+            cout<<"-日志异步写 ";
             Log::get_instance()->init("./ServerLog", m_close_log, 2000, 800000, 800);
         } else {//同步写
-            Log::get_instance()->init("/.ServerLog", m_close_log, 2000, 800000, 0);
+            cout<<"-日志同步写 ";
+            Log::get_instance()->init("./ServerLog", m_close_log, 2000, 800000, 0);
         }
     }
+    cout<<endl;
 }
 
 void WebServer::sql_pool() {
     /*初始化数据库连接池*/
-    m_connPool = connection_pool::Getinstance();
+    cout<<"sql_pool()--";
+    m_connPool = connection_pool::GetInstance();
     m_connPool->init("localhost", m_user, m_passWord, m_databaseName, 3306, m_sql_num, m_close_log);
-
+    //m_connPool->init("localhost", m_user, m_passWord, m_databaseName, 1000, m_sql_num, m_close_log);
     /*初始化数据库读取表*/
     users->initmysql_result(m_connPool);
+    cout<<endl;
 }
 
 void WebServer::thread_pool()
 {
+    cout<<"thread_pool()--";
     //线程池
     m_pool = new threadpool<http_conn>(m_actormodel, m_connPool, m_thread_num);
+    cout<<endl;
 }
 
+
 void WebServer::eventListen() {
+    cout<<"eventListen()开始运行";
     /*网络编程基础步骤*/
     m_listenfd = socket(PF_INET, SOCK_STREAM, 0);
     assert(m_listenfd >= 0);
@@ -102,7 +118,7 @@ void WebServer::eventListen() {
         struct linger tmp = {0, 1};
         setsockopt(m_listenfd, SOL_SOCKET, SO_LINGER, &tmp, sizeof(tmp));
     }
-    else if (m_OPT_LINGER) {
+    else if (m_OPT_LINGER == 1) {
         struct linger tmp = {1, 1};
         setsockopt(m_listenfd, SOL_SOCKET, SO_LINGER, &tmp, sizeof(tmp));
     }
@@ -121,9 +137,11 @@ void WebServer::eventListen() {
     ret = listen(m_listenfd, 5);
     assert(ret >= 0);
 
+    utils.init(TIMESLOT);
     /*epoll创建内核事件表*/
     epoll_event events[MAX_EVENT_NUMBER];
     m_epollfd = epoll_create(5);
+    assert(m_epollfd != -1);
 
     utils.addfd(m_epollfd, m_listenfd, false, m_LISTENTrigmode);
     http_conn::m_epollfd = m_epollfd;
@@ -142,6 +160,7 @@ void WebServer::eventListen() {
     /*工具类，信号和描述符基础操作*/
     Utils::u_pipefd = m_pipefd;
     Utils::u_epollfd = m_epollfd;
+    cout<<"  eventListen运行结束";
 }
 
 void WebServer::timer(int connfd, struct sockaddr_in client_address) {
@@ -268,7 +287,7 @@ void WebServer::dealwithread(int sockfd) {
     } else {
         /*proactor*/
         if (users[sockfd].read_once()) {
-            LOG_INFO("deal with the clinet(%s)", inet_ntoa(users[sockfd].get_address()->sin_addr));
+            LOG_INFO("deal with the client(%s)", inet_ntoa(users[sockfd].get_address()->sin_addr));
 
             /*若监测到读事件，将事件放去请求队列*/
             m_pool->append_p(users + sockfd);
@@ -295,7 +314,7 @@ void WebServer::dealwithwrite(int sockfd) {
 
         while (true) {
             if (users[sockfd].improv == 1) {
-                if (users[sockfd].timer_flag) {
+                if (users[sockfd].timer_flag == 1) {
                     deal_timer(timer, sockfd);
                     users[sockfd].timer_flag = 0;
                 }
@@ -323,11 +342,13 @@ void WebServer::eventLoop() {
     bool timeout = false;
     bool stop_server = false;
 
+    cout<<"eventLoop()开始循环";
+
     while (!stop_server) {
         int number = epoll_wait(m_epollfd, events, MAX_EVENT_NUMBER, -1);
 
         if (number < 0 && errno != EINTR) {
-            LOG_ERROR("%s", "epoll filure");
+            LOG_ERROR("%s", "epoll failure");
             break;
         }
 

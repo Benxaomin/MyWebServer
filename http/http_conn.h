@@ -91,9 +91,9 @@ private:
     void unmap();
 
     /*根据响应报文的格式，生成对应的8个部分，以下函数均由do_request调用*/
-    bool add_response(const char* format,...);
-    bool add_content(const char* content);
-    bool add_status_line(int status,const char *title);
+    bool add_response(const char *format,...);
+    bool add_content(const char *content);
+    bool add_status_line(int status, const char *title);
     bool add_headers(int content_length);
     bool add_content_type();
     bool add_content_length(int content_length);
@@ -115,7 +115,7 @@ private:
     /*缓冲区中m_read_buf中数据的最后一个字节的下一个位置*/
     long m_read_idx;
     /*m_read_buf读取的位置m_checked_idx*/
-    int m_checked_idx;
+    long m_checked_idx;
     /*m_read_buf中已经解析的字符个数*/
     int m_start_line;
 

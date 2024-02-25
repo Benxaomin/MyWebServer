@@ -81,7 +81,7 @@ public:
     /*信号处理函数*/
     static void sig_handler(int sig);
     /*设置信号处理函数   这里第二个参数void(handler)(int)等价于void(*handler)(int),再作函数参数时，后者的*可以省略*/
-    void addsig(int sig, void(handler)(int), bool restart = true);  
+    void addsig(int sig, void(handler)(int), bool restart = true);
     /*定时处理任务， 重新定时以不触发SIGALRM信号*/
     void timer_handler();
 

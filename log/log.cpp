@@ -1,4 +1,10 @@
-#include"log.h"
+#include <string.h>
+#include <time.h>
+#include <sys/time.h>
+#include <stdarg.h>
+#include <pthread.h>
+#include "log.h"
+
 using namespace std;
 
 Log::Log() {
@@ -12,7 +18,9 @@ Log::~Log() {
     }
 }
 
+
 bool Log::init(const char *file_name, int close_log, int log_buf_size, int split_lines, int max_queue_size) {
+    cout<<"日志初始化开始： ";
     if (max_queue_size >= 1) {
         m_is_async = true;//异步写入
         m_log_queue = new block_queue<string>(max_queue_size);//创建阻塞队列
@@ -39,7 +47,7 @@ bool Log::init(const char *file_name, int close_log, int log_buf_size, int split
     char log_full_name[256] = {0};//创建一个局部缓冲区对文件名命名
 
 
-    /*下面是命名规则代码：日志文件命名为：年_月_日_文件名*/
+    /*下面是命名规则代码：日志文件命名为：/年_月_日_文件名*/
     if (p == nullptr) {
         snprintf(log_full_name, 255, "%d_%02d_%02d_%s", my_tm.tm_year + 1900, my_tm.tm_mon + 1, my_tm.tm_mday, file_name);
     } else {
@@ -50,15 +58,20 @@ bool Log::init(const char *file_name, int close_log, int log_buf_size, int split
 
     m_today = my_tm.tm_mday;
     
+    cout<<"日志初始化完成  创建文件 ";
+
+    cout<<log_full_name;
     m_fp = fopen(log_full_name, "a");
     if (m_fp == nullptr) {
+        cout<<" 文件创建失败";
         return false;
     }
+    cout<<" 文件创建成功";
     return true;
 }
 
 void Log::write_log(int level, const char* format, ...) {
-    struct timeval now = {0,0};
+    struct timeval now = {0, 0};
     gettimeofday(&now, NULL);
     time_t t = now.tv_sec;
     struct tm *sys_tm = localtime(&t);
@@ -68,19 +81,19 @@ void Log::write_log(int level, const char* format, ...) {
     switch (level)
     {
     case 0:
-        strcpy(s,"[debug]");
+        strcpy(s,"[debug]:");
         break;
     case 1:
-        strcpy(s,"[info]");
+        strcpy(s,"[info]:");
         break;
     case 2:
-        strcpy(s,"[warn]");
+        strcpy(s,"[warn]:");
         break;
     case 3:
-        strcpy(s,"[error]");
+        strcpy(s,"[error]:");
         break;
     default:
-        strcpy(s,"[info]");
+        strcpy(s,"[info]:");
         break;
     }
 
@@ -135,4 +148,12 @@ void Log::write_log(int level, const char* format, ...) {
         m_mutex.unlock();
     }
     va_end(valst);
+}
+
+void Log::flush(void)
+{
+    m_mutex.lock();
+    //强制刷新写入流缓冲区
+    fflush(m_fp);
+    m_mutex.unlock();
 }
