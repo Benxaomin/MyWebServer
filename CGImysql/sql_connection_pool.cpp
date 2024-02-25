@@ -36,11 +36,9 @@ void connection_pool::init(string url, string User, string PassWord, string DBNa
             exit(1);
         }
         
-        //cout<<"第"<<i<<"次 :before mysql_real_connect"<<endl;
         /*真正的连接函数*/
         con = mysql_real_connect(con, url.c_str(), User.c_str(), PassWord.c_str(), DBName.c_str(), Port, NULL, 0);
 
-        //cout<<"第"<<i<<"次 :after mysql_real_connect"<<endl;
         if (con == nullptr) {
             LOG_ERROR("MySQL Error : mysql_real_connect");
             exit(1);

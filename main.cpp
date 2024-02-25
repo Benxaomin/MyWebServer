@@ -31,10 +31,9 @@ int main(int argc, char *argv[])
     //触发模式
     server.trig_mode();
 
-    cout << "准备进入 server.eventListen();" << endl;
     //监听
     server.eventListen();
-    cout << endl << "成功退出 server.eventListen();" << endl;
+
     //运行
     server.eventLoop();
 
