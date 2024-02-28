@@ -189,6 +189,7 @@ void Utils::addsig(int sig, void(handler)(int), bool restart) {
 
 void Utils::timer_handler() {
     m_timer_lst.tick();
+    /*设置定时器，经过m_TIMESLOT秒后发送信号*/
     alarm(m_TIMESLOT);
 }
 
@@ -203,7 +204,7 @@ int Utils::u_epollfd = 0;
 /*定时器回调函数*/
 class Utils;
 void cb_func(client_data *user_data) {
-    /*删除非活动连接在socket上的注册时间*/
+    /*删除非活动连接在socket上的注册事件*/
     epoll_ctl(Utils::u_epollfd, EPOLL_CTL_DEL, user_data->sockfd, 0);
     assert(user_data);
     /*关闭文件描述符*/
