@@ -1,0 +1,464 @@
+2024-03-03 10:38:03.501609 [info]: timer tick
+2024-03-03 10:38:08.501706 [info]: timer tick
+2024-03-03 10:38:10.190889 [info]: 我朝！新连接
+2024-03-03 10:38:10.190958 [error]: 新连接init TRIGMode = 0
+2024-03-03 10:38:10.191026 [error]: 新连接addfd TRIGMode = 0
+2024-03-03 10:38:10.191368 [info]: deal with the client(14.106.114.48)
+2024-03-03 10:38:10.191403 [info]: adjust timer once
+2024-03-03 10:38:10.191460 [info]: GET / HTTP/1.1
+2024-03-03 10:38:10.191472 [info]: Host: 101.33.211.235:9006
+2024-03-03 10:38:10.191480 [info]: Connection: keep-alive
+2024-03-03 10:38:10.191487 [info]: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:10.191494 [info]: oop!unkonw header: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:10.191502 [info]: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:10.191510 [info]: oop!unkonw header: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:10.191517 [info]: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:10.191525 [info]: oop!unkonw header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:10.191532 [info]: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:10.191540 [info]: oop!unkonw header: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:10.191547 [info]: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:10.191555 [info]: oop!unkonw header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:10.191562 [info]: 
+2024-03-03 10:38:10.191587 [info]: request:HTTP/1.1 200 OK
+
+2024-03-03 10:38:10.191595 [info]: request:HTTP/1.1 200 OK
+Content-Length:586
+
+2024-03-03 10:38:10.191602 [info]: request:HTTP/1.1 200 OK
+Content-Length:586
+Connection:keep-alive
+
+2024-03-03 10:38:10.191609 [info]: request:HTTP/1.1 200 OK
+Content-Length:586
+Connection:keep-alive
+
+
+2024-03-03 10:38:10.191664 [info]: send data to the client(14.106.114.48)
+2024-03-03 10:38:10.191674 [info]: adjust timer once
+2024-03-03 10:38:10.219134 [info]: 我朝！新连接
+2024-03-03 10:38:10.219220 [error]: 新连接init TRIGMode = 0
+2024-03-03 10:38:10.219250 [error]: 新连接addfd TRIGMode = 0
+2024-03-03 10:38:10.271932 [info]: deal with the client(14.106.114.48)
+2024-03-03 10:38:10.271991 [info]: adjust timer once
+2024-03-03 10:38:10.272035 [info]: GET /favicon.ico HTTP/1.1
+2024-03-03 10:38:10.272054 [info]: Host: 101.33.211.235:9006
+2024-03-03 10:38:10.272062 [info]: Connection: keep-alive
+2024-03-03 10:38:10.272070 [info]: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:10.272078 [info]: oop!unkonw header: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:10.272085 [info]: Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+2024-03-03 10:38:10.272093 [info]: oop!unkonw header: Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+2024-03-03 10:38:10.272100 [info]: Referer: http://101.33.211.235:9006/
+2024-03-03 10:38:10.272107 [info]: oop!unkonw header: Referer: http://101.33.211.235:9006/
+2024-03-03 10:38:10.272114 [info]: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:10.272121 [info]: oop!unkonw header: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:10.272128 [info]: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:10.272135 [info]: oop!unkonw header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:10.272142 [info]: 
+2024-03-03 10:38:10.272169 [info]: request:HTTP/1.1 200 OK
+
+2024-03-03 10:38:10.272177 [info]: request:HTTP/1.1 200 OK
+Content-Length:4286
+
+2024-03-03 10:38:10.272197 [info]: request:HTTP/1.1 200 OK
+Content-Length:4286
+Connection:keep-alive
+
+2024-03-03 10:38:10.272213 [info]: request:HTTP/1.1 200 OK
+Content-Length:4286
+Connection:keep-alive
+
+
+2024-03-03 10:38:10.272286 [info]: send data to the client(14.106.114.48)
+2024-03-03 10:38:10.272296 [info]: adjust timer once
+2024-03-03 10:38:12.608718 [info]: deal with the client(14.106.114.48)
+2024-03-03 10:38:12.608768 [info]: adjust timer once
+2024-03-03 10:38:12.608814 [info]: POST /1 HTTP/1.1
+2024-03-03 10:38:12.608826 [info]: Host: 101.33.211.235:9006
+2024-03-03 10:38:12.608834 [info]: Connection: keep-alive
+2024-03-03 10:38:12.608842 [info]: Content-Length: 0
+2024-03-03 10:38:12.608849 [info]: Cache-Control: max-age=0
+2024-03-03 10:38:12.608857 [info]: oop!unkonw header: Cache-Control: max-age=0
+2024-03-03 10:38:12.608864 [info]: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:12.608872 [info]: oop!unkonw header: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:12.608879 [info]: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:12.608886 [info]: oop!unkonw header: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:12.608894 [info]: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:12.608901 [info]: oop!unkonw header: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:12.608909 [info]: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:12.608916 [info]: oop!unkonw header: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:12.608924 [info]: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:12.608931 [info]: oop!unkonw header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:12.608938 [info]: Referer: http://101.33.211.235:9006/
+2024-03-03 10:38:12.608946 [info]: oop!unkonw header: Referer: http://101.33.211.235:9006/
+2024-03-03 10:38:12.608953 [info]: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:12.608960 [info]: oop!unkonw header: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:12.608967 [info]: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:12.608975 [info]: oop!unkonw header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:12.608983 [info]: 
+2024-03-03 10:38:12.659415 [info]: deal with the client(14.106.114.48)
+2024-03-03 10:38:12.659478 [info]: adjust timer once
+2024-03-03 10:38:12.659533 [info]: POST /1 HTTP/1.1
+2024-03-03 10:38:12.659545 [info]: Host: 101.33.211.235:9006
+2024-03-03 10:38:12.659553 [info]: Connection: keep-alive
+2024-03-03 10:38:12.659560 [info]: Content-Length: 0
+2024-03-03 10:38:12.659568 [info]: Cache-Control: max-age=0
+2024-03-03 10:38:12.659576 [info]: oop!unkonw header: Cache-Control: max-age=0
+2024-03-03 10:38:12.659583 [info]: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:12.659591 [info]: oop!unkonw header: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:12.659598 [info]: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:12.659606 [info]: oop!unkonw header: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:12.659613 [info]: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:12.659620 [info]: oop!unkonw header: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:12.659628 [info]: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:12.659635 [info]: oop!unkonw header: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:12.659643 [info]: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:12.659661 [info]: oop!unkonw header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:12.659668 [info]: Referer: http://101.33.211.235:9006/
+2024-03-03 10:38:12.659676 [info]: oop!unkonw header: Referer: http://101.33.211.235:9006/
+2024-03-03 10:38:12.659684 [info]: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:12.659691 [info]: oop!unkonw header: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:12.659698 [info]: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:12.659706 [info]: oop!unkonw header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:12.659713 [info]: 
+2024-03-03 10:38:12.749985 [info]: 我朝！新连接
+2024-03-03 10:38:12.750053 [error]: 新连接init TRIGMode = 0
+2024-03-03 10:38:12.750085 [error]: 新连接addfd TRIGMode = 0
+2024-03-03 10:38:12.750489 [info]: deal with the client(14.106.114.48)
+2024-03-03 10:38:12.750524 [info]: adjust timer once
+2024-03-03 10:38:12.750564 [info]: POST /1 HTTP/1.1
+2024-03-03 10:38:12.750575 [info]: Host: 101.33.211.235:9006
+2024-03-03 10:38:12.750582 [info]: Connection: keep-alive
+2024-03-03 10:38:12.750590 [info]: Content-Length: 0
+2024-03-03 10:38:12.750598 [info]: Cache-Control: max-age=0
+2024-03-03 10:38:12.750605 [info]: oop!unkonw header: Cache-Control: max-age=0
+2024-03-03 10:38:12.750612 [info]: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:12.750620 [info]: oop!unkonw header: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:12.750628 [info]: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:12.750635 [info]: oop!unkonw header: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:12.750642 [info]: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:12.750650 [info]: oop!unkonw header: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:12.750657 [info]: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:12.750665 [info]: oop!unkonw header: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:12.750672 [info]: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:12.750680 [info]: oop!unkonw header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:12.750687 [info]: Referer: http://101.33.211.235:9006/
+2024-03-03 10:38:12.750694 [info]: oop!unkonw header: Referer: http://101.33.211.235:9006/
+2024-03-03 10:38:12.750701 [info]: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:12.750709 [info]: oop!unkonw header: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:12.750716 [info]: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:12.750724 [info]: oop!unkonw header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:12.750731 [info]: 
+2024-03-03 10:38:13.501760 [info]: timer tick
+2024-03-03 10:38:15.023252 [info]: 我朝！新连接
+2024-03-03 10:38:15.023403 [error]: 新连接init TRIGMode = 0
+2024-03-03 10:38:15.023456 [error]: 新连接addfd TRIGMode = 0
+2024-03-03 10:38:15.024269 [info]: 我朝！新连接
+2024-03-03 10:38:15.024357 [error]: 新连接init TRIGMode = 0
+2024-03-03 10:38:15.024395 [error]: 新连接addfd TRIGMode = 0
+2024-03-03 10:38:15.914663 [info]: deal with the client(14.106.114.48)
+2024-03-03 10:38:15.914724 [info]: adjust timer once
+2024-03-03 10:38:15.914772 [info]: POST /0 HTTP/1.1
+2024-03-03 10:38:15.914781 [info]: Host: 101.33.211.235:9006
+2024-03-03 10:38:15.914787 [info]: Connection: keep-alive
+2024-03-03 10:38:15.914792 [info]: Content-Length: 0
+2024-03-03 10:38:15.914797 [info]: Cache-Control: max-age=0
+2024-03-03 10:38:15.914810 [info]: oop!unkonw header: Cache-Control: max-age=0
+2024-03-03 10:38:15.914816 [info]: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:15.914821 [info]: oop!unkonw header: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:15.914826 [info]: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:15.914830 [info]: oop!unkonw header: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:15.914835 [info]: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:15.914840 [info]: oop!unkonw header: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:15.914845 [info]: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:15.914850 [info]: oop!unkonw header: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:15.914858 [info]: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:15.914863 [info]: oop!unkonw header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:15.914868 [info]: Referer: http://101.33.211.235:9006/
+2024-03-03 10:38:15.914872 [info]: oop!unkonw header: Referer: http://101.33.211.235:9006/
+2024-03-03 10:38:15.914879 [info]: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:15.914886 [info]: oop!unkonw header: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:15.914893 [info]: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:15.914907 [info]: oop!unkonw header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:15.914918 [info]: 
+2024-03-03 10:38:15.914949 [info]: request:HTTP/1.1 200 OK
+
+2024-03-03 10:38:15.914964 [info]: request:HTTP/1.1 200 OK
+Content-Length:724
+
+2024-03-03 10:38:15.914970 [info]: request:HTTP/1.1 200 OK
+Content-Length:724
+Connection:keep-alive
+
+2024-03-03 10:38:15.914975 [info]: request:HTTP/1.1 200 OK
+Content-Length:724
+Connection:keep-alive
+
+
+2024-03-03 10:38:15.915718 [info]: send data to the client(14.106.114.48)
+2024-03-03 10:38:15.915747 [info]: adjust timer once
+2024-03-03 10:38:18.501823 [info]: timer tick
+2024-03-03 10:38:19.803905 [info]: deal with the client(14.106.114.48)
+2024-03-03 10:38:19.803964 [info]: adjust timer once
+2024-03-03 10:38:19.804012 [info]: POST /3CGISQL.cgi HTTP/1.1
+2024-03-03 10:38:19.804024 [info]: Host: 101.33.211.235:9006
+2024-03-03 10:38:19.804032 [info]: Connection: keep-alive
+2024-03-03 10:38:19.804040 [info]: Content-Length: 20
+2024-03-03 10:38:19.804048 [info]: Cache-Control: max-age=0
+2024-03-03 10:38:19.804055 [info]: oop!unkonw header: Cache-Control: max-age=0
+2024-03-03 10:38:19.804062 [info]: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:19.804070 [info]: oop!unkonw header: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:19.804077 [info]: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:19.804084 [info]: oop!unkonw header: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:19.804092 [info]: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:19.804100 [info]: oop!unkonw header: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:19.804107 [info]: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:19.804115 [info]: oop!unkonw header: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:19.804122 [info]: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:19.804130 [info]: oop!unkonw header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:19.804147 [info]: Referer: http://101.33.211.235:9006/0
+2024-03-03 10:38:19.804155 [info]: oop!unkonw header: Referer: http://101.33.211.235:9006/0
+2024-03-03 10:38:19.804162 [info]: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:19.804170 [info]: oop!unkonw header: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:19.804177 [info]: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:19.804185 [info]: oop!unkonw header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:19.804192 [info]: 
+2024-03-03 10:38:19.804206 [info]: user=rx&password=123
+2024-03-03 10:38:19.804235 [info]: request:HTTP/1.1 200 OK
+
+2024-03-03 10:38:19.804243 [info]: request:HTTP/1.1 200 OK
+Content-Length:786
+
+2024-03-03 10:38:19.804252 [info]: request:HTTP/1.1 200 OK
+Content-Length:786
+Connection:keep-alive
+
+2024-03-03 10:38:19.804259 [info]: request:HTTP/1.1 200 OK
+Content-Length:786
+Connection:keep-alive
+
+
+2024-03-03 10:38:19.805060 [info]: send data to the client(14.106.114.48)
+2024-03-03 10:38:19.805090 [info]: adjust timer once
+2024-03-03 10:38:23.501876 [info]: timer tick
+2024-03-03 10:38:24.001505 [info]: deal with the client(14.106.114.48)
+2024-03-03 10:38:24.001570 [info]: adjust timer once
+2024-03-03 10:38:24.001614 [info]: POST /3CGISQL.cgi HTTP/1.1
+2024-03-03 10:38:24.001633 [info]: Host: 101.33.211.235:9006
+2024-03-03 10:38:24.001641 [info]: Connection: keep-alive
+2024-03-03 10:38:24.001650 [info]: Content-Length: 19
+2024-03-03 10:38:24.001657 [info]: Cache-Control: max-age=0
+2024-03-03 10:38:24.001665 [info]: oop!unkonw header: Cache-Control: max-age=0
+2024-03-03 10:38:24.001672 [info]: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:24.001681 [info]: oop!unkonw header: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:24.001688 [info]: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:24.001695 [info]: oop!unkonw header: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:24.001703 [info]: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:24.001710 [info]: oop!unkonw header: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:24.001717 [info]: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:24.001725 [info]: oop!unkonw header: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:24.001732 [info]: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:24.001740 [info]: oop!unkonw header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:24.001747 [info]: Referer: http://101.33.211.235:9006/3CGISQL.cgi
+2024-03-03 10:38:24.001755 [info]: oop!unkonw header: Referer: http://101.33.211.235:9006/3CGISQL.cgi
+2024-03-03 10:38:24.001762 [info]: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:24.001769 [info]: oop!unkonw header: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:24.001777 [info]: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:24.001784 [info]: oop!unkonw header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:24.001797 [info]: 
+2024-03-03 10:38:24.001804 [info]: user=yes&password=1
+2024-03-03 10:38:24.001833 [info]: request:HTTP/1.1 200 OK
+
+2024-03-03 10:38:24.001841 [info]: request:HTTP/1.1 200 OK
+Content-Length:786
+
+2024-03-03 10:38:24.001848 [info]: request:HTTP/1.1 200 OK
+Content-Length:786
+Connection:keep-alive
+
+2024-03-03 10:38:24.001856 [info]: request:HTTP/1.1 200 OK
+Content-Length:786
+Connection:keep-alive
+
+
+2024-03-03 10:38:24.001999 [info]: send data to the client(14.106.114.48)
+2024-03-03 10:38:24.002019 [info]: adjust timer once
+2024-03-03 10:38:28.501997 [info]: timer tick
+2024-03-03 10:38:33.502051 [info]: timer tick
+2024-03-03 10:38:33.726094 [info]: 我朝！新连接
+2024-03-03 10:38:33.726170 [error]: 新连接init TRIGMode = 0
+2024-03-03 10:38:33.726210 [error]: 新连接addfd TRIGMode = 0
+2024-03-03 10:38:33.757167 [info]: deal with the client(14.106.114.48)
+2024-03-03 10:38:33.757241 [info]: adjust timer once
+2024-03-03 10:38:33.757248 [info]: POST /3CGISQL.cgi HTTP/1.1
+2024-03-03 10:38:33.757283 [info]: Host: 101.33.211.235:9006
+2024-03-03 10:38:33.757291 [info]: Connection: keep-alive
+2024-03-03 10:38:33.757298 [info]: Content-Length: 19
+2024-03-03 10:38:33.757303 [info]: Cache-Control: max-age=0
+2024-03-03 10:38:33.757307 [info]: oop!unkonw header: Cache-Control: max-age=0
+2024-03-03 10:38:33.757313 [info]: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:33.757318 [info]: oop!unkonw header: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:33.757323 [info]: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:33.757328 [info]: oop!unkonw header: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:33.757332 [info]: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:33.757337 [info]: oop!unkonw header: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:33.757342 [info]: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:33.757347 [info]: oop!unkonw header: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:33.757352 [info]: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:33.757357 [info]: oop!unkonw header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:33.757361 [info]: Referer: http://101.33.211.235:9006/3CGISQL.cgi
+2024-03-03 10:38:33.757366 [info]: oop!unkonw header: Referer: http://101.33.211.235:9006/3CGISQL.cgi
+2024-03-03 10:38:33.757371 [info]: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:33.757375 [info]: oop!unkonw header: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:33.757380 [info]: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:33.757385 [info]: oop!unkonw header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:33.757389 [info]: 
+2024-03-03 10:38:33.757394 [info]: user=abc&password=1
+2024-03-03 10:38:33.759149 [info]: 我朝！新连接
+2024-03-03 10:38:33.759215 [error]: 新连接init TRIGMode = 0
+2024-03-03 10:38:33.759245 [error]: 新连接addfd TRIGMode = 0
+2024-03-03 10:38:33.789829 [info]: request:HTTP/1.1 200 OK
+
+2024-03-03 10:38:33.789870 [info]: request:HTTP/1.1 200 OK
+Content-Length:725
+
+2024-03-03 10:38:33.789880 [info]: request:HTTP/1.1 200 OK
+Content-Length:725
+Connection:keep-alive
+
+2024-03-03 10:38:33.789887 [info]: request:HTTP/1.1 200 OK
+Content-Length:725
+Connection:keep-alive
+
+
+2024-03-03 10:38:33.789961 [info]: send data to the client(14.106.114.48)
+2024-03-03 10:38:33.789974 [info]: adjust timer once
+2024-03-03 10:38:38.502112 [info]: timer tick
+2024-03-03 10:38:39.239370 [info]: deal with the client(14.106.114.48)
+2024-03-03 10:38:39.239435 [info]: adjust timer once
+2024-03-03 10:38:39.239586 [info]: POST /2CGISQL.cgi HTTP/1.1
+2024-03-03 10:38:39.239608 [info]: Host: 101.33.211.235:9006
+2024-03-03 10:38:39.239617 [info]: Connection: keep-alive
+2024-03-03 10:38:39.239625 [info]: Content-Length: 19
+2024-03-03 10:38:39.239631 [info]: Cache-Control: max-age=0
+2024-03-03 10:38:39.239636 [info]: oop!unkonw header: Cache-Control: max-age=0
+2024-03-03 10:38:39.239641 [info]: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:39.239647 [info]: oop!unkonw header: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:39.239652 [info]: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:39.239657 [info]: oop!unkonw header: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:39.239677 [info]: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:39.239682 [info]: oop!unkonw header: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:39.239687 [info]: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:39.239692 [info]: oop!unkonw header: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:39.239697 [info]: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:39.239702 [info]: oop!unkonw header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:39.239707 [info]: Referer: http://101.33.211.235:9006/3CGISQL.cgi
+2024-03-03 10:38:39.239711 [info]: oop!unkonw header: Referer: http://101.33.211.235:9006/3CGISQL.cgi
+2024-03-03 10:38:39.239716 [info]: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:39.239721 [info]: oop!unkonw header: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:39.239725 [info]: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:39.239730 [info]: oop!unkonw header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:39.239735 [info]: 
+2024-03-03 10:38:39.239739 [info]: user=abc&password=1
+2024-03-03 10:38:39.239771 [info]: request:HTTP/1.1 200 OK
+
+2024-03-03 10:38:39.239776 [info]: request:HTTP/1.1 200 OK
+Content-Length:723
+
+2024-03-03 10:38:39.239781 [info]: request:HTTP/1.1 200 OK
+Content-Length:723
+Connection:keep-alive
+
+2024-03-03 10:38:39.239786 [info]: request:HTTP/1.1 200 OK
+Content-Length:723
+Connection:keep-alive
+
+
+2024-03-03 10:38:39.239861 [info]: send data to the client(14.106.114.48)
+2024-03-03 10:38:39.239874 [info]: adjust timer once
+2024-03-03 10:38:42.190627 [info]: deal with the client(14.106.114.48)
+2024-03-03 10:38:42.190693 [info]: adjust timer once
+2024-03-03 10:38:42.190838 [info]: POST /7 HTTP/1.1
+2024-03-03 10:38:42.190861 [info]: Host: 101.33.211.235:9006
+2024-03-03 10:38:42.190870 [info]: Connection: keep-alive
+2024-03-03 10:38:42.190878 [info]: Content-Length: 0
+2024-03-03 10:38:42.190886 [info]: Cache-Control: max-age=0
+2024-03-03 10:38:42.190893 [info]: oop!unkonw header: Cache-Control: max-age=0
+2024-03-03 10:38:42.190901 [info]: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:42.190909 [info]: oop!unkonw header: Upgrade-Insecure-Requests: 1
+2024-03-03 10:38:42.190916 [info]: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:42.190924 [info]: oop!unkonw header: Origin: http://101.33.211.235:9006
+2024-03-03 10:38:42.190931 [info]: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:42.190939 [info]: oop!unkonw header: Content-Type: application/x-www-form-urlencoded
+2024-03-03 10:38:42.190946 [info]: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:42.190954 [info]: oop!unkonw header: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0
+2024-03-03 10:38:42.190962 [info]: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:42.190969 [info]: oop!unkonw header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024-03-03 10:38:42.190976 [info]: Referer: http://101.33.211.235:9006/2CGISQL.cgi
+2024-03-03 10:38:42.190984 [info]: oop!unkonw header: Referer: http://101.33.211.235:9006/2CGISQL.cgi
+2024-03-03 10:38:42.190991 [info]: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:42.190998 [info]: oop!unkonw header: Accept-Encoding: gzip, deflate
+2024-03-03 10:38:42.191022 [info]: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:42.191030 [info]: oop!unkonw header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2024-03-03 10:38:42.191037 [info]: 
+2024-03-03 10:38:42.191071 [info]: request:HTTP/1.1 200 OK
+
+2024-03-03 10:38:42.191079 [info]: request:HTTP/1.1 200 OK
+Content-Length:424
+
+2024-03-03 10:38:42.191086 [info]: request:HTTP/1.1 200 OK
+Content-Length:424
+Connection:keep-alive
+
+2024-03-03 10:38:42.191094 [info]: request:HTTP/1.1 200 OK
+Content-Length:424
+Connection:keep-alive
+
+
+2024-03-03 10:38:42.191160 [info]: send data to the client(14.106.114.48)
+2024-03-03 10:38:42.191170 [info]: adjust timer once
+2024-03-03 10:38:43.502220 [info]: timer tick
+2024-03-03 10:38:48.502318 [info]: timer tick
+2024-03-03 10:38:50.809448 [info]: 我朝！新连接
+2024-03-03 10:38:50.809543 [error]: 新连接init TRIGMode = 0
+2024-03-03 10:38:50.809577 [error]: 新连接addfd TRIGMode = 0
+2024-03-03 10:38:50.810043 [info]: 我朝！新连接
+2024-03-03 10:38:50.810074 [error]: 新连接init TRIGMode = 0
+2024-03-03 10:38:50.810093 [error]: 新连接addfd TRIGMode = 0
+2024-03-03 10:38:53.502371 [info]: timer tick
+2024-03-03 10:38:58.502457 [info]: timer tick
+2024-03-03 10:39:03.502508 [info]: timer tick
+2024-03-03 10:39:08.502596 [info]: timer tick
+2024-03-03 10:39:13.502644 [info]: timer tick
+2024-03-03 10:39:18.502697 [info]: timer tick
+2024-03-03 10:39:23.502750 [info]: timer tick
+2024-03-03 10:39:28.502815 [info]: timer tick
+2024-03-03 10:39:33.502864 [info]: timer tick
+2024-03-03 10:39:38.502915 [info]: timer tick
+2024-03-03 10:39:43.502970 [info]: timer tick
+2024-03-03 10:39:48.503020 [info]: timer tick
+2024-03-03 10:39:53.503075 [info]: timer tick
+2024-03-03 10:39:58.503140 [info]: timer tick
+2024-03-03 10:40:03.503189 [info]: timer tick
+2024-03-03 10:40:08.503245 [info]: timer tick
+2024-03-03 10:40:13.503296 [info]: timer tick
+2024-03-03 10:40:18.503349 [info]: timer tick
+2024-03-03 10:40:23.503401 [info]: timer tick
+2024-03-03 10:40:28.503450 [info]: timer tick
+2024-03-03 10:40:33.503496 [info]: timer tick
+2024-03-03 10:40:38.503538 [info]: timer tick
+2024-03-03 10:40:43.503587 [info]: timer tick
+2024-03-03 10:40:48.503635 [info]: timer tick
+2024-03-03 10:40:53.503681 [info]: timer tick
+2024-03-03 10:40:58.503733 [info]: timer tick
+2024-03-03 10:41:03.503795 [info]: timer tick
+2024-03-03 10:41:08.503847 [info]: timer tick
+2024-03-03 10:41:13.503901 [info]: timer tick
+2024-03-03 10:41:18.503954 [info]: timer tick
+2024-03-03 10:41:23.504004 [info]: timer tick
+2024-03-03 10:41:28.504061 [info]: timer tick
+2024-03-03 10:41:33.504115 [info]: timer tick
+2024-03-03 10:41:38.504161 [info]: timer tick
+2024-03-03 10:41:43.504218 [info]: timer tick
+2024-03-03 10:41:48.504268 [info]: timer tick
+2024-03-03 10:41:53.504314 [info]: timer tick
+2024-03-03 10:41:58.504367 [info]: timer tick

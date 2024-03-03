@@ -11,7 +11,7 @@ locker m_lock;
 map<string,string> users;
 
 void http_conn::initmysql_result(connection_pool *connPool) {
-    cout<<" 数据库具体成员初始化";
+    //cout<<" 数据库具体成员初始化";
     /*从池中取一个连接*/
     MYSQL *mysql = NULL;
     connectionRAII mysqlcon(&mysql, connPool);
@@ -32,7 +32,7 @@ void http_conn::initmysql_result(connection_pool *connPool) {
         string temp2(row[1]);
         users[temp1] = temp2;
     }
-    cout<<"  数据库具体成员初始化完成";
+    //cout<<"  数据库具体成员初始化完成";
 }
 
 /*设置fd非阻塞*/
@@ -45,6 +45,7 @@ int setnonblocking(int fd) {
 
 /*将内核事件表注册读事件，ET模式,选择开启EPOLLONESHOT*/
 void addfd(int epollfd, int fd, bool one_shot, int TRIGMode) {
+    
     epoll_event event;
     event.data.fd = fd;
 
@@ -94,14 +95,15 @@ void http_conn::init(int sockfd, const sockaddr_in &addr, char *root, int TRIGMo
                     int close_log, string user, string passwd, string sqlname) {
     m_sockfd = sockfd;
     m_address = addr;
-
+    LOG_ERROR("新连接init TRIGMode = %d", TRIGMode);
+    m_TRIGMode = TRIGMode;
+    // TODO:检查addfd中m_TRIGMode是否正确 
     /*将sockfd加入m_epollfd内核事件描述符中，并设置one_shot*/
     addfd(m_epollfd, sockfd, true, m_TRIGMode);
     m_user_count++;
 
     /*当浏览器出现连接重置时，可能是网站根目录出错或http响应格式出错或者访问的文件中内容完全为空*/
     doc_root = root;
-    m_TRIGMode = TRIGMode;
     m_close_log = close_log;
 
     strcpy(sql_user, user.c_str());
@@ -416,8 +418,8 @@ http_conn::HTTP_CODE http_conn::do_request() {
             strcat(sql_insert, password);
             strcat(sql_insert, "')");
 
+            m_lock.lock();
             if (users.find(name) == users.end()) {
-                m_lock.lock();
                 /*SQL查询*/
                 int res = mysql_query(mysql,sql_insert);
                 users.insert(pair<string, string>(name, password));
@@ -429,6 +431,7 @@ http_conn::HTTP_CODE http_conn::do_request() {
                     strcpy(m_url, "/registerError.html");
                 }
             } else {
+                m_lock.unlock();
                 strcpy(m_url, "/registerError.html");
             }
         }

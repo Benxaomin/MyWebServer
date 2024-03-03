@@ -45,70 +45,70 @@ void WebServer::init(int port, string user, string passWord, string databaseName
 
 void WebServer::trig_mode() {
     /*LT + LT*/
-    cout<<"mode :";
+    //cout<<"mode :";
     if (m_TRIGMode == 0) {
-        cout<<"LT+LT"<<endl;
+        //cout<<"LT+LT"<<endl;
         m_LISTENTrigmode = 0;
         m_CONNTrigmode = 0;
     }
     /*LT + ET*/
     else if (m_TRIGMode == 1) {
-        cout<<"LT + ET"<<endl;
+        //cout<<"LT + ET"<<endl;
         m_LISTENTrigmode = 0;
         m_CONNTrigmode = 1;
     }
     /*ET + LT*/
     else if (m_TRIGMode == 2) {
-        cout<<"ET + LT"<<endl;
+        //cout<<"ET + LT"<<endl;
         m_LISTENTrigmode = 1;
         m_CONNTrigmode = 0;
     }
     /*ET + ET*/
     else if (m_TRIGMode == 3) {
-        cout<<"ET + ET"<<endl;
+        //cout<<"ET + ET"<<endl;
         m_LISTENTrigmode = 1;
         m_CONNTrigmode = 1;
     }
 }
 
 void WebServer::log_write() {
-    cout<<"log_write()";
+    //cout<<"log_write()";
     if (m_close_log == 0) {
-        cout<<"-进入日志成功";
+        //cout<<"-进入日志成功";
         /*初始化日志,m_log_write为1代表异步写*/
         if (m_log_write == 1) {
-            cout<<"-日志异步写 ";
+            //cout<<"-日志异步写 ";
             Log::get_instance()->init("./ServerLog", m_close_log, 2000, 800000, 800);
         } else {//同步写
-            cout<<"-日志同步写 ";
+            //cout<<"-日志同步写 ";
             Log::get_instance()->init("./ServerLog", m_close_log, 2000, 800000, 0);
         }
     }
-    cout<<endl;
+    //cout<<endl;
 }
 
 void WebServer::sql_pool() {
     /*初始化数据库连接池*/
-    cout<<"sql_pool()--";
+    //cout<<"sql_pool()--";
     m_connPool = connection_pool::GetInstance();
     m_connPool->init("localhost", m_user, m_passWord, m_databaseName, 3306, m_sql_num, m_close_log);
     //m_connPool->init("localhost", m_user, m_passWord, m_databaseName, 1000, m_sql_num, m_close_log);
     /*初始化数据库读取表*/
     users->initmysql_result(m_connPool);
-    cout<<endl;
+    //cout<<endl;
 }
 
 void WebServer::thread_pool()
 {
-    cout<<"thread_pool()--";
+    //cout<<"thread_pool()--";
     //线程池
     m_pool = new threadpool<http_conn>(m_actormodel, m_connPool, m_thread_num);
-    cout<<endl;
+    //cout<<endl;
 }
 
 
 void WebServer::eventListen() {
-    cout<<"eventListen()开始运行";
+    //cout<<"eventListen()开始运行";
     /*网络编程基础步骤*/
     m_listenfd = socket(PF_INET, SOCK_STREAM, 0);
     assert(m_listenfd >= 0);
@@ -159,7 +159,7 @@ void WebServer::eventListen() {
     /*工具类，信号和描述符基础操作*/
     Utils::u_pipefd = m_pipefd;
     Utils::u_epollfd = m_epollfd;
-    cout<<"  eventListen运行结束";
+    //cout<<"  eventListen运行结束";
 }
 
 void WebServer::timer(int connfd, struct sockaddr_in client_address) {
@@ -199,6 +199,7 @@ void WebServer::deal_timer(util_timer *timer, int sockfd) {
 bool WebServer::dealclientdata() {
     struct sockaddr_in client_address;
     socklen_t client_addrlength = sizeof(client_address);
+    LOG_INFO("%s", "我朝！新连接");
     if (m_LISTENTrigmode == 0) {
         int connfd = accept(m_listenfd, (struct sockaddr *)&client_address, &client_addrlength);
         if (connfd < 0) {
@@ -341,7 +342,7 @@ void WebServer::eventLoop() {
     bool timeout = false;
     bool stop_server = false;
 
-    cout<<"eventLoop()开始循环";
+    //cout<<"eventLoop()开始循环";
 
     while (!stop_server) {
         int number = epoll_wait(m_epollfd, events, MAX_EVENT_NUMBER, -1);

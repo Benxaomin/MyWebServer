@@ -20,7 +20,7 @@ Log::~Log() {
 
 
 bool Log::init(const char *file_name, int close_log, int log_buf_size, int split_lines, int max_queue_size) {
-    cout<<"日志初始化开始： ";
+    //cout<<"日志初始化开始： ";
     if (max_queue_size >= 1) {
         m_is_async = true;//异步写入
         m_log_queue = new block_queue<string>(max_queue_size);//创建阻塞队列
@@ -58,15 +58,15 @@ bool Log::init(const char *file_name, int close_log, int log_buf_size, int split
 
     m_today = my_tm.tm_mday;
     
-    cout<<"日志初始化完成  创建文件 ";
+    //cout<<"日志初始化完成  创建文件 ";
 
-    cout<<log_full_name;
+    //cout<<log_full_name;
     m_fp = fopen(log_full_name, "a");
     if (m_fp == nullptr) {
-        cout<<" 文件创建失败";
+        //cout<<" 文件创建失败";
         return false;
     }
-    cout<<" 文件创建成功";
+    //cout<<" 文件创建成功";
     return true;
 }
 

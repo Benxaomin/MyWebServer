@@ -38,7 +38,7 @@ template <typename T>
 threadpool<T>::threadpool(int actor_model, connection_pool *connPool, int thread_number, int max_requests) :
 m_actor_model(actor_model), m_thread_number(thread_number), m_max_requests(max_requests), m_threads(NULL), m_connPool(connPool) 
 {
-    cout<<"线程池初始化开始";
+    //cout<<"线程池初始化开始";
     if (thread_number <= 0 || max_requests <= 0)
         throw std::exception();
     m_threads = new pthread_t[m_thread_number];
@@ -57,7 +57,7 @@ m_actor_model(actor_model), m_thread_number(thread_number), m_max_requests(max_r
             throw std::exception();
         }
     }
-    cout<<"  线程池初始化完成";
+    //cout<<"  线程池初始化完成";
 }
 
 template <typename T>
