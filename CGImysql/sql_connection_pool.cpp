@@ -19,7 +19,7 @@ connection_pool::~connection_pool() {
 }
 
 void connection_pool::init(string url, string User, string PassWord, string DBName, int Port, int MaxConn, int close_log) {
-    cout<<"  数据库连接池初始化";
+    //cout<<"  数据库连接池初始化";
     m_url = url;
     m_Port = Port;
     m_User = User;
@@ -52,7 +52,7 @@ void connection_pool::init(string url, string User, string PassWord, string DBNa
 
     m_MaxConn = m_FreeConn;
 
-    cout<<"  数据库连接池初始化完成";
+    //cout<<"  数据库连接池初始化完成";
 }
 
 MYSQL *connection_pool::Getconnection() {
