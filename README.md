@@ -17,12 +17,10 @@ Introduction
 	* Ubuntu版本20.04
 	* MySQL版本8.0
 * 浏览器测试环境
-	* Windows、Linux均可
-	* Chrome
+	* Windows
 	* Edge
 
 * 测试前确认已安装MySQL数据库
-
     ```C++
     // 建立yourdb库
     create database yourdb;
@@ -37,7 +35,6 @@ Introduction
     // 添加数据
     INSERT INTO user(username, passwd) VALUES('name', 'passwd');
     ```
-
 * 修改main.cpp中的数据库初始化信息
 
     ```C++
@@ -60,7 +57,6 @@ Introduction
     ```
 
 * 浏览器端
-
     ```C++
     ip:9006
     ```
